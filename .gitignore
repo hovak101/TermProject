@@ -2,6 +2,7 @@
 
 !.gitignore
 !pom.xml
+!ReadMe.txt
 
 !src/
 !src/main/
