@@ -1,0 +1,12 @@
+*
+
+!.gitignore
+!pom.xml
+
+!src/
+!src/main/
+!src/main/java/
+!src/main/java/s25/
+!src/main/java/s25/cs151/
+!src/main/java/s25/cs151/termproject/
+!src/main/java/s25/cs151/termproject/**
