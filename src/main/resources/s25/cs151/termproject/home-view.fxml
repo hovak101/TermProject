@@ -12,7 +12,6 @@
             fx:controller="s25.cs151.termproject.HomeController"
             prefWidth="1000" prefHeight="600">
 
-  <!-- Point to the external CSS file -->
   <stylesheets>
     <!-- The "@home-view.css" syntax loads the CSS from the same package or resource folder. -->
     <URL value="@style/home-view.css"/>
@@ -33,7 +32,7 @@
       <!-- Notifications Title -->
       <Label fx:id="notificationsTitle" text="NOTIFICATIONS" />
 
-      <!-- Example Notification Box -->
+      <!-- Notification Box -->
       <HBox fx:id="notificationBox" spacing="10">
         <Label fx:id="notificationIcon" text="⚠" />
         <Label fx:id="notificationText"
