@@ -1,0 +1,67 @@
+/* Root pane if you need a global background or padding */
+.root {
+    /* e.g. -fx-background-color: #FFFFFF; */
+}
+
+/* ---- LEFT PANEL ---- */
+#leftContainer {
+    -fx-background-color: #E8EDFF;
+    -fx-padding: 20;
+}
+
+#appTitle {
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+}
+
+#welcomeMessage {
+    -fx-font-size: 16;
+}
+
+#notificationsTitle {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+#notificationBox {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 10;
+    -fx-border-color: #CCCCCC;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+#notificationIcon {
+    -fx-font-size: 18;
+}
+
+#notificationText {
+    -fx-font-size: 14;
+}
+
+#notificationDismissButton {
+    -fx-font-size: 14;
+}
+
+/* ---- CENTER CONTENT ---- */
+#mainContent {
+    -fx-padding: 40;
+}
+
+#homePageTitle {
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+}
+
+#dividerLine {
+    -fx-stroke: #999999;
+}
+
+#createOfficeHoursButton,
+#manageOfficeHoursButton,
+#viewAppointmentsButton {
+    -fx-font-size: 16;
+    -fx-padding: 10 20;
+    /* Optional consistent width: */
+    -fx-pref-width: 250;
+}

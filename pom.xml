@@ -68,7 +68,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>s25.cs151.termproject/s25.cs151.termproject.HelloApplication</mainClass>
+              <mainClass>s25.cs151.termproject/s25.cs151.termproject.main</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
