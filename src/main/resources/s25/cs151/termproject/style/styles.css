@@ -1,0 +1,68 @@
+.root-pane {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 0;
+}
+
+.left-pane {
+    -fx-min-width: 250px;
+    -fx-padding: 20;
+    -fx-spacing: 20;
+    -fx-background-color: #F5F8FE;    /* a light bluish background */
+}
+
+.brand-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.subtitle-text {
+    -fx-font-size: 14px;
+}
+
+.notification-box {
+    -fx-background-color: #FFF;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    /* etc. */
+}
+
+.notification-icon {
+    -fx-font-size: 16px;
+    -fx-text-fill: #FFB200;
+}
+.notification-text {
+    -fx-font-size: 12px;
+}
+.notification-close-btn {
+    -fx-font-size: 10px;
+}
+
+.center-pane {
+    -fx-padding: 40;
+}
+
+.page-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.main-button {
+    -fx-background-color: #397AF9;
+    -fx-text-fill: white;
+    -fx-pref-width: 220;
+    -fx-pref-height: 40;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.secondary-button {
+    -fx-background-color: #999;
+    -fx-text-fill: white;
+    -fx-pref-width: 100;
+    -fx-pref-height: 36;
+    -fx-cursor: hand;
+}
