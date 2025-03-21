@@ -22,7 +22,7 @@
             <!-- Semester -->
             <HBox alignment="CENTER_LEFT" spacing="8">
                 <Label text="Semester:"/>
-                <ComboBox>
+                <ComboBox fx:id="semesterComboBox">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Spring"/>
