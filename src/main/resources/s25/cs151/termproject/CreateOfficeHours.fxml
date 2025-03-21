@@ -37,17 +37,17 @@
             <!-- Year -->
             <HBox alignment="CENTER_LEFT" spacing="8">
                 <Label text="Year:"/>
-                <TextField text="2025"/>
+                <TextField fx:id="yearTextField" text="2025"/>
             </HBox>
 
             <!-- Days of the week -->
             <Label text="Days:"/>
             <VBox alignment="CENTER_LEFT" spacing="4">
-                <CheckBox text="Monday"/>
-                <CheckBox text="Tuesday"/>
-                <CheckBox text="Wednesday"/>
-                <CheckBox text="Thursday"/>
-                <CheckBox text="Friday"/>
+                <CheckBox fx:id="mondayCheckbox" text="Monday"/>
+                <CheckBox fx:id="tuesdayCheckbox" text="Tuesday"/>
+                <CheckBox fx:id="wednesdayCheckbox" text="Wednesday"/>
+                <CheckBox fx:id="thursdayCheckbox" text="Thursday"/>
+                <CheckBox fx:id="fridayCheckbox" text="Friday"/>
             </VBox>
 
             <!-- Actions -->
