@@ -48,6 +48,7 @@ public class CreateOfficeHoursController {
         if (continueButton != null) {
             continueButton.setOnAction(event -> {
                 System.out.println("Continue button clicked!");
+                saveOfficeHours();
                 // Future logic for handling form submission
             });
         }
