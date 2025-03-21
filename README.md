@@ -13,6 +13,9 @@ git clone https://github.com/hovak101/TermProject.git
 
 ### Step 2: Install Dependencies
 
+Watch and follow this video first: 
+https://www.youtube.com/watch?v=G_XJuULQPmM
+
 Change into the cloned directory:
 
 ```sh
