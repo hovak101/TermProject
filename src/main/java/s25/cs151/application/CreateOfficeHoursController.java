@@ -1,4 +1,4 @@
-package s25.cs151.termproject;
+package s25.cs151.application;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
