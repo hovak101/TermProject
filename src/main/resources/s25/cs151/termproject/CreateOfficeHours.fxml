@@ -43,11 +43,11 @@
             <!-- Days of the week -->
             <Label text="Days:"/>
             <VBox alignment="CENTER_LEFT" spacing="4">
-                <CheckBox fx:id="mondayCheckbox" text="Monday"/>
-                <CheckBox fx:id="tuesdayCheckbox" text="Tuesday"/>
-                <CheckBox fx:id="wednesdayCheckbox" text="Wednesday"/>
-                <CheckBox fx:id="thursdayCheckbox" text="Thursday"/>
-                <CheckBox fx:id="fridayCheckbox" text="Friday"/>
+                <CheckBox fx:id="mondayCheckBox" text="Monday"/>
+                <CheckBox fx:id="tuesdayCheckBox" text="Tuesday"/>
+                <CheckBox fx:id="wednesdayCheckBox" text="Wednesday"/>
+                <CheckBox fx:id="thursdayCheckBox" text="Thursday"/>
+                <CheckBox fx:id="fridayCheckBox" text="Friday"/>
             </VBox>
 
             <!-- Actions -->
