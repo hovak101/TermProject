@@ -27,6 +27,7 @@ public class HomeController {
         if (manageCurrentHoursButton != null) {
             manageCurrentHoursButton.setOnAction(event -> {
                 System.out.println("Manage Current Office Hours Clicked");
+                sceneController.switchScene("ManageOfficeHours.fxml");
             });
         }
 
