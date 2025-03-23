@@ -1,11 +1,12 @@
 package s25.cs151.application;
 
+import java.io.IOException;
+import java.lang.reflect.Method;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.lang.reflect.Method;
 
 public class SceneController {
 
@@ -29,7 +30,9 @@ public class SceneController {
                 method.invoke(controller, this);
             }
 
-            stage.setScene(new Scene(root, stage.getWidth(), stage.getHeight()));
+            // Create new scene with constant dimensions
+            Scene newScene = new Scene(root, main.WINDOW_WIDTH, main.WINDOW_HEIGHT);
+            stage.setScene(newScene);
             stage.show();
         } catch (IOException | NoSuchMethodException | IllegalAccessException | java.lang.reflect.InvocationTargetException e) {
             e.printStackTrace();
