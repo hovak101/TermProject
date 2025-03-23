@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="s25.cs151.application.EditOfficeHoursDialogController"
+      stylesheets="@style/styles.css"
+      spacing="16">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Edit Office Hours" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <!-- Semester -->
+    <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label text="Semester:"/>
+        <ComboBox fx:id="semesterComboBox">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Spring"/>
+                    <String fx:value="Summer"/>
+                    <String fx:value="Fall"/>
+                    <String fx:value="Winter"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+    </HBox>
+
+    <!-- Year -->
+    <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label text="Year:"/>
+        <TextField fx:id="yearTextField"/>
+    </HBox>
+
+    <!-- Days of the week -->
+    <Label text="Days:"/>
+    <VBox alignment="CENTER_LEFT" spacing="4">
+        <CheckBox fx:id="mondayCheckBox" text="Monday"/>
+        <CheckBox fx:id="tuesdayCheckBox" text="Tuesday"/>
+        <CheckBox fx:id="wednesdayCheckBox" text="Wednesday"/>
+        <CheckBox fx:id="thursdayCheckBox" text="Thursday"/>
+        <CheckBox fx:id="fridayCheckBox" text="Friday"/>
+    </VBox>
+
+    <!-- Actions -->
+    <HBox alignment="CENTER_RIGHT" spacing="8">
+        <Button fx:id="cancelButton" text="Cancel" styleClass="secondary-button"/>
+        <Button fx:id="saveButton" text="Save" styleClass="main-button"/>
+    </HBox>
+
+</VBox> 

@@ -22,7 +22,7 @@
             <columns>
                 <TableColumn fx:id="semesterColumn" text="Semester" prefWidth="100"/>
                 <TableColumn fx:id="yearColumn" text="Year" prefWidth="100"/>
-                <TableColumn fx:id="daysColumn" text="Days" prefWidth="200"/>
+                <TableColumn fx:id="daysColumn" text="Days" prefWidth="300"/>
             </columns>
         </TableView>
     </VBox>
