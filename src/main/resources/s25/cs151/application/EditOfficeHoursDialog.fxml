@@ -47,6 +47,9 @@
         <CheckBox fx:id="fridayCheckBox" text="Friday"/>
     </VBox>
 
+    <!-- Error Message -->
+    <Label fx:id="errorLabel" textFill="RED" visible="false"/>
+
     <!-- Actions -->
     <HBox alignment="CENTER_RIGHT" spacing="8">
         <Button fx:id="cancelButton" text="Cancel" styleClass="secondary-button"/>

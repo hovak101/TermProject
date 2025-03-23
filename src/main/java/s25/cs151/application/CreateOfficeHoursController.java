@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class CreateOfficeHoursController {
@@ -25,6 +26,7 @@ public class CreateOfficeHoursController {
     @FXML private CheckBox wednesdayCheckBox;
     @FXML private CheckBox thursdayCheckBox;
     @FXML private CheckBox fridayCheckBox;
+    @FXML private Label errorLabel;
 
     public static final String FILE_NAME = "OfficeHours.csv";
 
@@ -47,10 +49,49 @@ public class CreateOfficeHoursController {
         if (continueButton != null) {
             continueButton.setOnAction(event -> {
                 System.out.println("Continue button clicked!");
-                saveOfficeHours();
-                // Future logic for handling form submission
+                if (validateFields()) {
+                    saveOfficeHours();
+                }
             });
         }
+    }
+
+    private boolean validateFields() {
+        StringBuilder errorMessage = new StringBuilder();
+        boolean hasError = false;
+
+        // Validate semester
+        if (semesterComboBox.getValue() == null) {
+            errorMessage.append("Please select a semester\n");
+            hasError = true;
+        }
+
+        // Validate year
+        String year = yearTextField.getText().trim();
+        if (year.isEmpty()) {
+            errorMessage.append("Please enter a year\n");
+            hasError = true;
+        } else if (!year.matches("\\d{4}")) {
+            errorMessage.append("Year must be a 4-digit number\n");
+            hasError = true;
+        }
+
+        // Validate days
+        if (!mondayCheckBox.isSelected() && !tuesdayCheckBox.isSelected() && 
+            !wednesdayCheckBox.isSelected() && !thursdayCheckBox.isSelected() && 
+            !fridayCheckBox.isSelected()) {
+            errorMessage.append("Please select at least one day");
+            hasError = true;
+        }
+
+        if (hasError) {
+            errorLabel.setText(errorMessage.toString());
+            errorLabel.setVisible(true);
+        } else {
+            errorLabel.setVisible(false);
+        }
+
+        return !hasError;
     }
 
     private void saveOfficeHours() {

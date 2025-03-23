@@ -1,10 +1,15 @@
 package s25.cs151.application;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class EditOfficeHoursDialogController {
     @FXML private ComboBox<String> semesterComboBox;
@@ -16,6 +21,7 @@ public class EditOfficeHoursDialogController {
     @FXML private CheckBox fridayCheckBox;
     @FXML private Button cancelButton;
     @FXML private Button saveButton;
+    @FXML private Label errorLabel;
 
     private ManageOfficeHoursController.OfficeHours officeHours;
     private ManageOfficeHoursController parentController;
@@ -58,10 +64,61 @@ public class EditOfficeHoursDialogController {
         });
     }
 
+    @FXML
     private void saveChanges() {
-        String semester = semesterComboBox.getValue();
-        String year = yearTextField.getText();
+        if (validateFields()) {
+            String semester = semesterComboBox.getValue();
+            String year = yearTextField.getText();
+            String days = getSelectedDays();
 
+            officeHours.update(semester, year, days);
+            parentController.refreshTable();
+
+            // Close the dialog
+            Stage stage = (Stage) saveButton.getScene().getWindow();
+            stage.close();
+        }
+    }
+
+    private boolean validateFields() {
+        StringBuilder errorMessage = new StringBuilder();
+        boolean hasError = false;
+
+        // Validate semester
+        if (semesterComboBox.getValue() == null) {
+            errorMessage.append("Please select a semester\n");
+            hasError = true;
+        }
+
+        // Validate year
+        String year = yearTextField.getText().trim();
+        if (year.isEmpty()) {
+            errorMessage.append("Please enter a year\n");
+            hasError = true;
+        } else if (!year.matches("\\d{4}")) {
+            errorMessage.append("Year must be a 4-digit number\n");
+            hasError = true;
+        }
+
+        // Validate days
+        if (!mondayCheckBox.isSelected() && !tuesdayCheckBox.isSelected() && 
+            !wednesdayCheckBox.isSelected() && !thursdayCheckBox.isSelected() && 
+            !fridayCheckBox.isSelected()) {
+            errorMessage.append("Please select at least one day");
+            hasError = true;
+        }
+
+        if (hasError) {
+            errorLabel.setText(errorMessage.toString());
+            errorLabel.setVisible(true);
+        } else {
+            errorLabel.setVisible(false);
+        }
+
+        return !hasError;
+    }
+
+    private String getSelectedDays() {
         List<String> selectedDays = new ArrayList<>();
         if (mondayCheckBox.isSelected()) selectedDays.add("Monday");
         if (tuesdayCheckBox.isSelected()) selectedDays.add("Tuesday");
@@ -69,16 +126,6 @@ public class EditOfficeHoursDialogController {
         if (thursdayCheckBox.isSelected()) selectedDays.add("Thursday");
         if (fridayCheckBox.isSelected()) selectedDays.add("Friday");
 
-        String days = String.join(", ", selectedDays);
-        
-        // Update the office hours object
-        officeHours.update(semester, year, days);
-        
-        // Notify parent controller to refresh the table
-        parentController.refreshTable();
-        
-        // Close the dialog
-        Stage stage = (Stage) saveButton.getScene().getWindow();
-        stage.close();
+        return String.join(", ", selectedDays);
     }
 } 

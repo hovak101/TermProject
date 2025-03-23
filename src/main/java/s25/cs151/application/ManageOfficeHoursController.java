@@ -68,6 +68,16 @@ public class ManageOfficeHoursController {
                     officeHoursList.add(new OfficeHours(semester, year, days));
                 }
             }
+            // Sort the list by year (descending) and semester
+            officeHoursList.sort((oh1, oh2) -> {
+                // First compare by year (descending)
+                int yearCompare = oh2.getYear().compareTo(oh1.getYear());
+                if (yearCompare != 0) {
+                    return yearCompare;
+                }
+                // If years are equal, compare by semester
+                return getSemesterOrder(oh2.getSemester()) - getSemesterOrder(oh1.getSemester());
+            });
             officeHoursTable.setItems(officeHoursList);
         } catch (IOException e) {
             System.err.println("Error reading office hours file: " + e.getMessage());
@@ -86,6 +96,16 @@ public class ManageOfficeHoursController {
             if (days[4].equals("1")) formattedDays.add("Friday");
         }
         return String.join(", ", formattedDays);
+    }
+
+    private int getSemesterOrder(String semester) {
+        switch (semester.toLowerCase()) {
+            case "spring": return 4;
+            case "summer": return 3;
+            case "fall": return 2;
+            case "winter": return 1;
+            default: return 0;
+        }
     }
 
     @FXML
