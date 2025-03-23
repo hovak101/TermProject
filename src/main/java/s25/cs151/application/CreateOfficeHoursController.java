@@ -1,17 +1,16 @@
 package s25.cs151.application;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.CheckBox;
-
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 public class CreateOfficeHoursController {
 
@@ -89,11 +88,13 @@ public class CreateOfficeHoursController {
     }
 
     private void writeToCSV(String semester, String year, List<String> selectedDays) {
-        try (PrintWriter pw = new PrintWriter(FILE_NAME)) {
-            String days = String.join(",", selectedDays);
+        try (FileWriter fw = new FileWriter(FILE_NAME, true); // true for append mode
+             PrintWriter pw = new PrintWriter(fw)) {
+            String days = String.join("", selectedDays);
             pw.println(year + "," + semester + "," + days);
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("Successfully wrote to CSV file");
+        } catch (IOException e) {
+            System.err.println("Error writing to CSV file: " + e.getMessage());
             e.printStackTrace();
         }
     }
