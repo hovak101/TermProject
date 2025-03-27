@@ -31,7 +31,7 @@ public class SceneController {
             }
 
             // Create new scene with constant dimensions
-            Scene newScene = new Scene(root, main.WINDOW_WIDTH, main.WINDOW_HEIGHT);
+            Scene newScene = new Scene(root, Main.WINDOW_WIDTH, Main.WINDOW_HEIGHT);
             stage.setScene(newScene);
             stage.show();
         } catch (IOException | NoSuchMethodException | IllegalAccessException | java.lang.reflect.InvocationTargetException e) {

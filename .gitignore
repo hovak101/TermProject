@@ -1,7 +1,5 @@
 .idea
 target/
-pom.xml
-mvnw
 *.class
 *.sh
-pom.xml
+*.csv
