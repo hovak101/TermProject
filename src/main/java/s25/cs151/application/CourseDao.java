@@ -53,7 +53,7 @@ public class CourseDao implements CourseDaoInt {
                 }
             }
         } catch (FileNotFoundException e) {
-            
+
         } catch (IOException e) {
             System.err.println("Error reading Courses.csv: " + e.getMessage());
             e.printStackTrace();
