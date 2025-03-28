@@ -23,28 +23,24 @@ public class EditOfficeHoursDialogController {
     @FXML private Button saveButton;
     @FXML private Label errorLabel;
 
-    private ManageOfficeHoursController.OfficeHours officeHours;
+    private SemesterOfficeHourBean officeHours;
     private ManageOfficeHoursController parentController;
 
-    public void setOfficeHours(ManageOfficeHoursController.OfficeHours officeHours) {
+    public void setOfficeHours(SemesterOfficeHourBean officeHours) {
         this.officeHours = officeHours;
         // Populate the fields with current values
         semesterComboBox.setValue(officeHours.getSemester());
-        yearTextField.setText(officeHours.getYear());
+
+        yearTextField.setText(String.valueOf(officeHours.getYear()));
         
         // Parse the days string and set checkboxes
         String days = officeHours.getDays();
-        if (days != null) {
-            String[] dayArray = days.split(", ");
-            for (String day : dayArray) {
-                switch (day) {
-                    case "Monday": mondayCheckBox.setSelected(true); break;
-                    case "Tuesday": tuesdayCheckBox.setSelected(true); break;
-                    case "Wednesday": wednesdayCheckBox.setSelected(true); break;
-                    case "Thursday": thursdayCheckBox.setSelected(true); break;
-                    case "Friday": fridayCheckBox.setSelected(true); break;
-                }
-            }
+        if (days != null && days.length() >= 5) {
+            if (days.charAt(0) == '1') mondayCheckBox.setSelected(true);
+            if (days.charAt(1) == '1') tuesdayCheckBox.setSelected(true);
+            if (days.charAt(2) == '1') wednesdayCheckBox.setSelected(true);
+            if (days.charAt(3) == '1') thursdayCheckBox.setSelected(true);
+            if (days.charAt(4) == '1') fridayCheckBox.setSelected(true);
         }
     }
 
@@ -68,10 +64,12 @@ public class EditOfficeHoursDialogController {
     private void saveChanges() {
         if (validateFields()) {
             String semester = semesterComboBox.getValue();
-            String year = yearTextField.getText();
+            int year = Integer.parseInt(yearTextField.getText());
             String days = getSelectedDays();
 
-            officeHours.update(semester, year, days);
+            officeHours.setSemester(semester);
+            officeHours.setYear(year);
+            officeHours.setDays(days);
             parentController.refreshTable();
 
             // Close the dialog
@@ -119,13 +117,12 @@ public class EditOfficeHoursDialogController {
     }
 
     private String getSelectedDays() {
-        List<String> selectedDays = new ArrayList<>();
-        if (mondayCheckBox.isSelected()) selectedDays.add("Monday");
-        if (tuesdayCheckBox.isSelected()) selectedDays.add("Tuesday");
-        if (wednesdayCheckBox.isSelected()) selectedDays.add("Wednesday");
-        if (thursdayCheckBox.isSelected()) selectedDays.add("Thursday");
-        if (fridayCheckBox.isSelected()) selectedDays.add("Friday");
-
-        return String.join(", ", selectedDays);
+        StringBuilder sb = new StringBuilder("00000");
+        if (mondayCheckBox.isSelected()) sb.setCharAt(0, '1');
+        if (tuesdayCheckBox.isSelected()) sb.setCharAt(1, '1');
+        if (wednesdayCheckBox.isSelected()) sb.setCharAt(2, '1');
+        if (thursdayCheckBox.isSelected()) sb.setCharAt(3, '1');
+        if (fridayCheckBox.isSelected()) sb.setCharAt(4, '1');
+        return sb.toString();
     }
 } 
