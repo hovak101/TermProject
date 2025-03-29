@@ -18,7 +18,9 @@ public class DefineCoursesController {
 
     @FXML private Button cancelButton;
     @FXML private Button continueButton;
-    @FXML private TextField courseTextField;
+    @FXML private TextField courseCodeTextField;
+    @FXML private TextField courseNameTextField;
+    @FXML private TextField sectionNumberTextField;
     @FXML private Label errorLabel;
     private CourseDaoInt dao;
 
@@ -32,7 +34,7 @@ public class DefineCoursesController {
     public void initialize() {
         System.out.println("Cancel Button: " + cancelButton); // Debugging line
         System.out.println("Continue Button: " + continueButton); // Debugging line
-        
+        this.dao = new CourseDao();
 
         if (cancelButton != null) {
             cancelButton.setOnAction(event -> {
@@ -44,8 +46,16 @@ public class DefineCoursesController {
         if (continueButton != null) {
             continueButton.setOnAction(event -> {
                 System.out.println("Continue button clicked!");
+                String courseCode = courseCodeTextField.getText();
+                String courseName = courseNameTextField.getText();
+                String sectionNumber = sectionNumberTextField.getText();
                 if (validateFields()) {
-                    saveOfficeHours();
+                    try {
+                        dao.storeCourse(courseCode, courseName, Integer.parseInt(sectionNumber));
+                    } catch (IllegalArgumentException e) {
+                        errorLabel.setText(e.toString());
+                        errorLabel.setVisible(true);
+                    }
                 }
             });
         }
@@ -56,28 +66,26 @@ public class DefineCoursesController {
         boolean hasError = false;
 
         // Validate year
-        String course = courseTextField.getText().trim();
-        if (course.isEmpty()) {
+        String courseCode = courseCodeTextField.getText().trim();
+        if (courseCode.isEmpty()) {
+            errorMessage.append("Please enter a year\n");
+            hasError = true;
+        }
+
+        // Validate year
+        String courseName = courseNameTextField.getText().trim();
+        if (courseName.isEmpty()) {
+            errorMessage.append("Please enter a year\n");
+            hasError = true;
+        }
+
+        // Validate year
+        String sectionNumber = sectionNumberTextField.getText().trim();
+        if (sectionNumber.isEmpty()) {
             errorMessage.append("Please enter a year\n");
             hasError = true;
         }
 
         return !hasError;
-    }
-
-    private void saveOfficeHours() {
-        String course = courseTextField.getText();
-        writeToCSV(course);
-    }
-
-    private void writeToCSV(String course) {
-        try (FileWriter fw = new FileWriter(FILE_NAME, true); // true for append mode
-             PrintWriter pw = new PrintWriter(fw)) {
-            pw.println(course);
-            System.out.println("Successfully wrote to CSV file");
-        } catch (IOException e) {
-            System.err.println("Error writing to CSV file: " + e.getMessage());
-            e.printStackTrace();
-        }
     }
 }
