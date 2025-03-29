@@ -20,6 +20,7 @@ public class DefineCoursesController {
     @FXML private Button continueButton;
     @FXML private TextField courseTextField;
     @FXML private Label errorLabel;
+    private CourseDaoInt dao;
 
     public static final String FILE_NAME = "Courses.csv";
 
@@ -31,6 +32,7 @@ public class DefineCoursesController {
     public void initialize() {
         System.out.println("Cancel Button: " + cancelButton); // Debugging line
         System.out.println("Continue Button: " + continueButton); // Debugging line
+        
 
         if (cancelButton != null) {
             cancelButton.setOnAction(event -> {
