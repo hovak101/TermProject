@@ -10,6 +10,7 @@ public class HomeController {
     @FXML private Button createOfficeHoursButton;
     @FXML private Button manageCurrentHoursButton;
     @FXML private Button viewAppointmentsButton;
+    @FXML private Button defineCoursesButton;
 
     public void setSceneController(SceneController sceneController) {
         this.sceneController = sceneController;
@@ -34,6 +35,13 @@ public class HomeController {
         if (viewAppointmentsButton != null) {
             viewAppointmentsButton.setOnAction(event -> {
                 System.out.println("View My Appointments Clicked");
+            });
+        }
+
+        if (defineCoursesButton != null) {
+            defineCoursesButton.setOnAction(actionEvent -> {
+                System.out.println("Define Courses Clicked");
+                sceneController.switchScene("DefineCourses.fxml");
             });
         }
     }
