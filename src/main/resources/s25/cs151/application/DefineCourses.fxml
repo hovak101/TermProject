@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="s25.cs151.application.DefineCoursesController"
+            stylesheets="@style/styles.css"
+            styleClass="root-pane">
+
+    <!-- Sidebar -->
+    <left>
+        <fx:include source="LeftPane.fxml"/>
+    </left>
+
+    <!-- Main -->
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="16" styleClass="center-pane">
+
+            <Label text="Define Courses" styleClass="page-title"/>
+
+            <!-- Course -->
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Label text="Course:"/>
+                <TextField fx:id="courseTextField" text=""/>
+            </HBox>
+
+            <!-- Error Message -->
+            <Label fx:id="errorLabel" textFill="RED" visible="false"/>
+
+            <!-- Actions -->
+            <HBox alignment="CENTER_RIGHT" spacing="8">
+                <Button fx:id="cancelButton" text="Cancel" styleClass="main-button"/>
+                <Button fx:id="continueButton" text="Continue" styleClass="main-button"/>
+            </HBox>
+
+        </VBox>
+    </center>
+</BorderPane>
