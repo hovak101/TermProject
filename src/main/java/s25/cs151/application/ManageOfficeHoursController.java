@@ -1,10 +1,6 @@
 package s25.cs151.application;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,63 +22,19 @@ import javafx.stage.Stage;
 public class ManageOfficeHoursController {
     private SceneController sceneController;
 
-    @FXML private TableView<OfficeHours> officeHoursTable;
-    @FXML private TableColumn<OfficeHours, String> semesterColumn;
-    @FXML private TableColumn<OfficeHours, String> yearColumn;
-    @FXML private TableColumn<OfficeHours, String> daysColumn;
+    @FXML private TableView<SemesterOfficeHourBean> officeHoursTable;
+    @FXML private TableColumn<SemesterOfficeHourBean, String> semesterColumn;
+    @FXML private TableColumn<SemesterOfficeHourBean, String> yearColumn;
+    @FXML private TableColumn<SemesterOfficeHourBean, String> daysColumn;
     @FXML private Button backButton;
     @FXML private Button editButton;
     @FXML private Button deleteButton;
 
-    private ObservableList<OfficeHours> officeHoursList = FXCollections.observableArrayList();
+    private SemesterOfficeHourDaoInt dao;
+    private ObservableList<SemesterOfficeHourBean> officeHoursList;
 
     public void setSceneController(SceneController sceneController) {
         this.sceneController = sceneController;
-    }
-
-    @FXML
-    public void initialize() {
-        // Set up table columns
-        semesterColumn.setCellValueFactory(new PropertyValueFactory<>("semester"));
-        yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
-        daysColumn.setCellValueFactory(new PropertyValueFactory<>("days"));
-
-        // Load office hours data
-        loadOfficeHours();
-
-        // Set up button handlers
-        backButton.setOnAction(event -> handleBackButton());
-        editButton.setOnAction(event -> handleEditButton());
-        deleteButton.setOnAction(event -> handleDeleteButton());
-    }
-
-    private void loadOfficeHours() {
-        try (BufferedReader br = new BufferedReader(new FileReader(CreateOfficeHoursController.FILE_NAME))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                if (values.length >= 3) {
-                    String year = values[0];
-                    String semester = values[1];
-                    String days = formatDays(values[2]);
-                    officeHoursList.add(new OfficeHours(semester, year, days));
-                }
-            }
-            // Sort the list by year (descending) and semester
-            officeHoursList.sort((oh1, oh2) -> {
-                // First compare by year (descending)
-                int yearCompare = oh2.getYear().compareTo(oh1.getYear());
-                if (yearCompare != 0) {
-                    return yearCompare;
-                }
-                // If years are equal, compare by semester
-                return getSemesterOrder(oh2.getSemester()) - getSemesterOrder(oh1.getSemester());
-            });
-            officeHoursTable.setItems(officeHoursList);
-        } catch (IOException e) {
-            System.err.println("Error reading office hours file: " + e.getMessage());
-            e.printStackTrace();
-        }
     }
 
     private String formatDays(String daysString) {
@@ -96,6 +48,42 @@ public class ManageOfficeHoursController {
             if (days[4].equals("1")) formattedDays.add("Friday");
         }
         return String.join(", ", formattedDays);
+    }
+
+    @FXML
+    public void initialize() {
+        // Set up table columns
+        semesterColumn.setCellValueFactory(new PropertyValueFactory<>("semester"));
+        yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
+        daysColumn.setCellValueFactory(cellData -> {
+            String raw = cellData.getValue().getDays(); // e.g., "10101"
+            String formatted = formatDays(raw);         // e.g., "Monday, Wednesday, Friday"
+            return new javafx.beans.property.SimpleStringProperty(formatted);
+        });
+
+        this.dao = new SemesterOfficeHourDao();
+        // Load office hours data
+        loadOfficeHours();
+
+        // Set up button handlers
+        backButton.setOnAction(event -> handleBackButton());
+        editButton.setOnAction(event -> handleEditButton());
+        deleteButton.setOnAction(event -> handleDeleteButton());
+    }
+
+    private void loadOfficeHours() {
+        officeHoursList = FXCollections.observableList(new ArrayList<>(dao.getSemesterOfficeHours()));
+            // Sort the list by year (descending) and semester
+            officeHoursList.sort((oh1, oh2) -> {
+                // First compare by year (descending)
+                int yearCompare = Integer.compare(oh2.getYear(), oh1.getYear());
+                if (yearCompare != 0) {
+                    return yearCompare;
+                }
+                // If years are equal, compare by semester
+                return getSemesterOrder(oh2.getSemester()) - getSemesterOrder(oh1.getSemester());
+            });
+            officeHoursTable.setItems(officeHoursList);
     }
 
     private int getSemesterOrder(String semester) {
@@ -115,7 +103,7 @@ public class ManageOfficeHoursController {
 
     @FXML
     private void handleEditButton() {
-        OfficeHours selected = officeHoursTable.getSelectionModel().getSelectedItem();
+        SemesterOfficeHourBean selected = officeHoursTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
             showEditDialog(selected);
         } else {
@@ -123,11 +111,11 @@ public class ManageOfficeHoursController {
         }
     }
 
-    private void showEditDialog(OfficeHours officeHours) {
+    private void showEditDialog(SemesterOfficeHourBean officeHours) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("EditOfficeHoursDialog.fxml"));
             Parent root = loader.load();
-            
+
             EditOfficeHoursDialogController dialogController = loader.getController();
             dialogController.setOfficeHours(officeHours);
             dialogController.setParentController(this);
@@ -146,13 +134,13 @@ public class ManageOfficeHoursController {
 
     @FXML
     private void handleDeleteButton() {
-        OfficeHours selected = officeHoursTable.getSelectionModel().getSelectedItem();
+        SemesterOfficeHourBean selected = officeHoursTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
             // Show confirmation dialog
             Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
             confirmDialog.setTitle("Confirm Deletion");
             confirmDialog.setHeaderText("Delete Office Hours");
-            confirmDialog.setContentText("Are you sure you want to delete the office hours for " + 
+            confirmDialog.setContentText("Are you sure you want to delete the office hours for " +
                 selected.getSemester() + " " + selected.getYear() + "?");
 
             confirmDialog.showAndWait().ifPresent(response -> {
@@ -160,7 +148,7 @@ public class ManageOfficeHoursController {
                     // Remove from the observable list
                     officeHoursList.remove(selected);
                     // Save changes to file
-                    saveAllOfficeHours();
+                    dao.storeSemesterOfficeHours(officeHoursList);
                     // Show success message
                     showAlert("Office hours deleted successfully.");
                 }
@@ -180,58 +168,9 @@ public class ManageOfficeHoursController {
 
     public void refreshTable() {
         // Save all office hours back to the file
-        saveAllOfficeHours();
+        dao.storeSemesterOfficeHours(officeHoursList);
         // Reload the table
         officeHoursList.clear();
         loadOfficeHours();
-    }
-
-    private void saveAllOfficeHours() {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(CreateOfficeHoursController.FILE_NAME, false))) {
-            for (OfficeHours oh : officeHoursList) {
-                String days = convertDaysToBinary(oh.getDays());
-                pw.println(oh.getYear() + "," + oh.getSemester() + "," + days);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private String convertDaysToBinary(String daysString) {
-        String[] days = daysString.split(", ");
-        StringBuilder binary = new StringBuilder("00000");
-        for (String day : days) {
-            switch (day) {
-                case "Monday": binary.setCharAt(0, '1'); break;
-                case "Tuesday": binary.setCharAt(1, '1'); break;
-                case "Wednesday": binary.setCharAt(2, '1'); break;
-                case "Thursday": binary.setCharAt(3, '1'); break;
-                case "Friday": binary.setCharAt(4, '1'); break;
-            }
-        }
-        return binary.toString();
-    }
-
-    // Data model class for office hours
-    public static class OfficeHours {
-        private String semester;
-        private String year;
-        private String days;
-
-        public OfficeHours(String semester, String year, String days) {
-            this.semester = semester;
-            this.year = year;
-            this.days = days;
-        }
-
-        public String getSemester() { return semester; }
-        public String getYear() { return year; }
-        public String getDays() { return days; }
-
-        public void update(String semester, String year, String days) {
-            this.semester = semester;
-            this.year = year;
-            this.days = days;
-        }
     }
 } 
