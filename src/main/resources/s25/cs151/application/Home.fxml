@@ -22,6 +22,7 @@
       <Button fx:id="manageCurrentHoursButton" text="Manage Current Office Hours" styleClass="main-button"/>
       <Button fx:id="viewAppointmentsButton" text="View My Appointments" styleClass="main-button"/>
       <Button fx:id="defineCoursesButton" text="Define Courses" styleClass="main-button"/>
+      <Button fx:id="viewCoursesButton" text="View Courses" styleClass="main-button"/>
 
     </VBox>
   </center>

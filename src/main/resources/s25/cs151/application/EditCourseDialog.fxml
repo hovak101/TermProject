@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="s25.cs151.application.EditCourseDialogController"
+      stylesheets="@style/styles.css"
+      spacing="16">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Edit Course" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <!-- Course Code -->
+    <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label text="Course Code:"/>
+        <TextField fx:id="courseCodeTextField"/>
+    </HBox>
+
+    <!-- Course Name -->
+    <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label text="Course Name:"/>
+        <TextField fx:id="courseNameTextField"/>
+    </HBox>
+
+    <!-- Section Number -->
+    <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label text="Section Number:"/>
+        <TextField fx:id="sectionNumberTextField"/>
+    </HBox>
+
+    <!-- Error Message -->
+    <Label fx:id="errorLabel" textFill="RED" visible="false"/>
+
+    <!-- Actions -->
+    <HBox alignment="CENTER_RIGHT" spacing="8">
+        <Button fx:id="cancelButton" text="Cancel" styleClass="secondary-button"/>
+        <Button fx:id="saveButton" text="Save" styleClass="main-button"/>
+    </HBox>
+
+</VBox> 

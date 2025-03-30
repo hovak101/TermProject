@@ -59,6 +59,16 @@
     -fx-cursor: hand;
 }
 
+.red-button {
+    -fx-background-color: #FF4136;
+    -fx-text-fill: white;
+    -fx-pref-width: 220;
+    -fx-pref-height: 40;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
 .secondary-button {
     -fx-background-color: #999;
     -fx-text-fill: white;
