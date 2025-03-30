@@ -8,8 +8,9 @@ public class HomeController {
     private SceneController sceneController;
 
     @FXML private Button createOfficeHoursButton;
-    @FXML private Button setTimeSlotsButton;
     @FXML private Button manageCurrentHoursButton;
+    @FXML private Button setTimeSlotsButton;
+    @FXML private Button viewTimeSlotsButton;
     @FXML private Button viewAppointmentsButton;
     @FXML private Button defineCoursesButton;
     @FXML private Button viewCoursesButton;
@@ -27,17 +28,24 @@ public class HomeController {
             });
         }
 
-        if (setTimeSlotsButton != null) {
-            setTimeSlotsButton.setOnAction(event -> {
-                System.out.println("Manage Current Office Hours Clicked");
-                sceneController.switchScene("SetTimeSlots.fxml");
-            });
-        }
-
         if (manageCurrentHoursButton != null) {
             manageCurrentHoursButton.setOnAction(event -> {
                 System.out.println("Manage Current Office Hours Clicked");
                 sceneController.switchScene("ManageOfficeHours.fxml");
+            });
+        }
+
+        if (setTimeSlotsButton != null) {
+            setTimeSlotsButton.setOnAction(event -> {
+                System.out.println("Define Semester's Time Slots Clicked");
+                sceneController.switchScene("SetTimeSlots.fxml");
+            });
+        }
+
+        if (viewTimeSlotsButton != null) {
+            viewTimeSlotsButton.setOnAction(event -> {
+                System.out.println("View Semester's Time Slots Clicked");
+                sceneController.switchScene("ViewTimeSlots.fxml");
             });
         }
 
