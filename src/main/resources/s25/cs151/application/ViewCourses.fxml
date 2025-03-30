@@ -30,7 +30,7 @@
     <HBox spacing="10" alignment="CENTER_RIGHT">
         <Button fx:id="backButton" text="Back" onAction="#handleBackButton" styleClass="main-button"/>
         <Button fx:id="editButton" text="Edit" onAction="#handleEditButton" styleClass="main-button"/>
-        <Button fx:id="deleteButton" text="Delete" onAction="#handleDeleteButton" styleClass="red-button"/>
+        <Button fx:id="deleteButton" text="Delete" onAction="#handleDeleteButton" styleClass="delete-button"/>
     </HBox>
 
 </VBox> 

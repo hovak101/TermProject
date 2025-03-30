@@ -154,7 +154,7 @@ public class ManageOfficeHoursController {
             
             // Style the buttons
             Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-            okButton.getStyleClass().add("red-button");
+            okButton.getStyleClass().add("secondary-button");
             
             Button cancelButton = (Button) dialogPane.lookupButton(ButtonType.CANCEL);
             cancelButton.getStyleClass().add("main-button");
