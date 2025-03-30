@@ -40,10 +40,9 @@ public class DefineCoursesController {
                 String courseCode = courseCodeTextField.getText().trim();
                 String courseName = courseNameTextField.getText().trim();
                 String sectionNumber = sectionNumberTextField.getText().trim();
-                
                 if (validateFields()) {
                     try {
-                        dao.storeCourse(courseCode, courseName, Integer.parseInt(sectionNumber));
+                        dao.storeCourse(courseCode, courseName, sectionNumber);
                         // If successful, go back to home page
                         sceneController.switchScene("Home.fxml");
                     } catch (IllegalArgumentException e) {
@@ -78,17 +77,9 @@ public class DefineCoursesController {
         if (sectionNumber.isEmpty()) {
             errorMessage.append("Please enter a section number\n");
             hasError = true;
-        } else {
-            try {
-                int section = Integer.parseInt(sectionNumber);
-                if (section <= 0) {
-                    errorMessage.append("Section number must be a positive integer\n");
-                    hasError = true;
-                }
-            } catch (NumberFormatException e) {
-                errorMessage.append("Section number must be a valid integer\n");
-                hasError = true;
-            }
+        } else if (!sectionNumber.matches("\\d+")) {
+            errorMessage.append("Section number must contain only numbers\n");
+            hasError = true;
         }
 
         if (hasError) {

@@ -22,7 +22,7 @@ public class EditCourseDialogController {
         // Populate the fields with current values
         courseCodeTextField.setText(course.getCourseCode());
         courseNameTextField.setText(course.getCourseName());
-        sectionNumberTextField.setText(String.valueOf(course.getSectionNumber()));
+        sectionNumberTextField.setText(course.getSectionNumber());
     }
 
     public void setParentController(ViewCoursesController parentController) {
@@ -45,7 +45,7 @@ public class EditCourseDialogController {
         if (validateFields()) {
             String courseCode = courseCodeTextField.getText().trim();
             String courseName = courseNameTextField.getText().trim();
-            int sectionNumber = Integer.parseInt(sectionNumberTextField.getText().trim());
+            String sectionNumber = sectionNumberTextField.getText().trim();
 
             course.setCourseCode(courseCode);
             course.setCourseName(courseName);
@@ -82,13 +82,9 @@ public class EditCourseDialogController {
         if (sectionNumber.isEmpty()) {
             errorMessage.append("Please enter a section number\n");
             hasError = true;
-        } else {
-            try {
-                Integer.parseInt(sectionNumber);
-            } catch (NumberFormatException e) {
-                errorMessage.append("Section number must be a valid integer\n");
-                hasError = true;
-            }
+        } else if (!sectionNumber.matches("\\d+")) {
+            errorMessage.append("Section number must contain only numbers\n");
+            hasError = true;
         }
 
         if (hasError) {
