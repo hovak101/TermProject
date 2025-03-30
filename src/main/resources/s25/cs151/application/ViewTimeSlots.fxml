@@ -5,10 +5,10 @@
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="s25.cs151.application.ViewCoursesController"
+      fx:controller="s25.cs151.application.ViewTimeSlotsController"
       stylesheets="@style/styles.css"
       spacing="20">
-
+    
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
@@ -16,13 +16,12 @@
     <Label text="View Time Slots" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
 
     <VBox spacing="10">
-        <Label text="Available Courses:" style="-fx-font-size: 16px;"/>
-
-        <TableView fx:id="coursesTable" VBox.vgrow="ALWAYS">
+        <Label text="Available Time Slots:" style="-fx-font-size: 16px;"/>
+        
+        <TableView fx:id="timeSlotsTable" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="TimeSlotsColumn" text="Course Code" prefWidth="200"/>
-                <TableColumn fx:id="courseNameColumn" text="Course Name" prefWidth="400"/>
-                <TableColumn fx:id="sectionNumberColumn" text="Section" prefWidth="150"/>
+                <TableColumn fx:id="fromHourColumn" text="From" prefWidth="200"/>
+                <TableColumn fx:id="toHourColumn" text="To" prefWidth="200"/>
             </columns>
         </TableView>
     </VBox>
@@ -33,4 +32,4 @@
         <Button fx:id="deleteButton" text="Delete" onAction="#handleDeleteButton" styleClass="delete-button"/>
     </HBox>
 
-</VBox>
+</VBox> 
