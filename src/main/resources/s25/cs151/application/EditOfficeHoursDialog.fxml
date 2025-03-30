@@ -34,7 +34,7 @@
     <!-- Year -->
     <HBox alignment="CENTER_LEFT" spacing="8">
         <Label text="Year:"/>
-        <TextField fx:id="yearTextField"/>
+        <TextField fx:id="yearTextField" promptText="ex: 2025"/>
     </HBox>
 
     <!-- Days of the week -->

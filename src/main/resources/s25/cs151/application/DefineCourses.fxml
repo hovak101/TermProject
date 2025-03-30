@@ -22,19 +22,19 @@
             <!-- Course Code  -->
             <HBox alignment="CENTER_LEFT" spacing="8">
                 <Label text="Course Number:"/>
-                <TextField fx:id="courseCodeTextField" text=""/>
+                <TextField fx:id="courseCodeTextField" promptText="ex: CS151"/>
             </HBox>
 
             <!-- Course Name  -->
             <HBox alignment="CENTER_LEFT" spacing="8">
                 <Label text="Course Name:"/>
-                <TextField fx:id="courseNameTextField" text=""/>
+                <TextField fx:id="courseNameTextField" promptText="ex: Object-Oriented Design"/>
             </HBox>
 
             <!-- Section Number  -->
             <HBox alignment="CENTER_LEFT" spacing="8">
                 <Label text="Section Number:"/>
-                <TextField fx:id="sectionNumberTextField" text=""/>
+                <TextField fx:id="sectionNumberTextField" promptText="ex: 04"/>
             </HBox>
 
             <!-- Error Message -->
