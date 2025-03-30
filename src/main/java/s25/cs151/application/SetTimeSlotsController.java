@@ -47,7 +47,7 @@ public class SetTimeSlotsController {
                         // If successful, go back to home page
                         sceneController.switchScene("Home.fxml");
                     } catch (IllegalArgumentException e) {
-                        errorLabel.setText("Unable to save hour");
+                        errorLabel.setText("Unable to save time slots");
                         errorLabel.setVisible(true);
                     }
                 }

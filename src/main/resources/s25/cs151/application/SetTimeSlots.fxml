@@ -4,7 +4,7 @@
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="s25.cs151.application.CreateOfficeHoursController"
+            fx:controller="s25.cs151.application.SetTimeSlotsController"
             stylesheets="@style/styles.css"
             styleClass="root-pane">
 
@@ -17,7 +17,7 @@
     <center>
         <VBox alignment="TOP_CENTER" spacing="16" styleClass="center-pane">
 
-            <Label text="Set Time Slots" styleClass="page-title"/>
+            <Label text="Set Semester's Time Slots" styleClass="page-title"/>
 
             <!-- From Hour -->
             <HBox alignment="CENTER_LEFT" spacing="8">
@@ -56,6 +56,9 @@
                     </items>
                 </ComboBox>
             </HBox>
+
+            <!-- Error Message -->
+            <Label fx:id="errorLabel" textFill="RED" visible="false"/>
 
             <!-- Actions -->
             <HBox alignment="CENTER_RIGHT" spacing="8">

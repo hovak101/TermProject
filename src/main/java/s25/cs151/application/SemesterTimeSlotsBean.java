@@ -1,12 +1,13 @@
 package s25.cs151.application;
 
 public class SemesterTimeSlotsBean {
-    private String fromHour; // Format: HH:mm
-    private String toHour;
+    private final String fromHour; // Format: HH:mm
+    private final String toHour;
 
     public SemesterTimeSlotsBean(String fromHour, String toHour) {
-        if (!fromHour.matches("\\d{2}:\\d{2}") || !toHour.matches("\\d{2}:\\d{2}")) {
-            throw new IllegalArgumentException("Time must be in HH:mm format.");
+        // Validate that both times are in HH:mm format
+        if (!fromHour.matches("\\d{1,2}:\\d{2} [APM]{2}") || !toHour.matches("\\d{1,2}:\\d{2} [APM]{2}")) {
+            throw new IllegalArgumentException("Time must be in HH:mm AM/PM format.");
         }
         this.fromHour = fromHour;
         this.toHour = toHour;
@@ -14,7 +15,4 @@ public class SemesterTimeSlotsBean {
 
     public String getFromHour() { return fromHour; }
     public String getToHour() { return toHour; }
-
-    public void setFromHour(String fromHour) { this.fromHour = fromHour; }
-    public void setToHour(String toHour) { this.toHour = toHour; }
 }
