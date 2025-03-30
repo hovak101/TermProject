@@ -19,6 +19,7 @@
 
       <!-- Action -->
       <Button fx:id="createOfficeHoursButton" text="Create New Office Hours" styleClass="main-button"/>
+      <Button fx:id="setTimeSlotsButton" text="Set Time Slots" styleClass="main-button"/>
       <Button fx:id="manageCurrentHoursButton" text="Manage Current Office Hours" styleClass="main-button"/>
       <Button fx:id="viewAppointmentsButton" text="View My Appointments" styleClass="main-button"/>
       <Button fx:id="defineCoursesButton" text="Define Courses" styleClass="main-button"/>

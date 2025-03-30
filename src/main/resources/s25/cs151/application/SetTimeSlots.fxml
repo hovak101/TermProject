@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="s25.cs151.application.CreateOfficeHoursController"
+            stylesheets="@style/styles.css"
+            styleClass="root-pane">
+
+    <!-- Sidebar -->
+    <left>
+        <fx:include source="LeftPane.fxml"/>
+    </left>
+
+    <!-- Main -->
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="16" styleClass="center-pane">
+
+            <Label text="Set Time Slots" styleClass="page-title"/>
+
+            <!-- From Hour -->
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Label text="From Hour:"/>
+                <ComboBox fx:id="fromHourComboBox">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="10:00 AM"/>
+                            <String fx:value="11:00 AM"/>
+                            <String fx:value="12:00 PM"/>
+                            <String fx:value="1:00 PM"/>
+                            <String fx:value="2:00 PM"/>
+                            <String fx:value="3:00 PM"/>
+                            <String fx:value="4:00 PM"/>
+                            <String fx:value="5:00 PM"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </HBox>
+
+            <!-- To Hour -->
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Label text="To Hour:"/>
+                <ComboBox fx:id="toHourComboBox">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="10:00 AM"/>
+                            <String fx:value="11:00 AM"/>
+                            <String fx:value="12:00 PM"/>
+                            <String fx:value="1:00 PM"/>
+                            <String fx:value="2:00 PM"/>
+                            <String fx:value="3:00 PM"/>
+                            <String fx:value="4:00 PM"/>
+                            <String fx:value="5:00 PM"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </HBox>
+
+            <!-- Actions -->
+            <HBox alignment="CENTER_RIGHT" spacing="8">
+                <Button fx:id="cancelButton" text="Cancel" styleClass="main-button"/>
+                <Button fx:id="continueButton" text="Continue" styleClass="main-button"/>
+            </HBox>
+
+        </VBox>
+    </center>
+</BorderPane>

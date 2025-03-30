@@ -8,6 +8,7 @@ public class HomeController {
     private SceneController sceneController;
 
     @FXML private Button createOfficeHoursButton;
+    @FXML private Button setTimeSlotsButton;
     @FXML private Button manageCurrentHoursButton;
     @FXML private Button viewAppointmentsButton;
     @FXML private Button defineCoursesButton;
@@ -23,6 +24,13 @@ public class HomeController {
         if (createOfficeHoursButton != null) {
             createOfficeHoursButton.setOnAction(event -> {
                 sceneController.switchScene("CreateOfficeHours.fxml");
+            });
+        }
+
+        if (setTimeSlotsButton != null) {
+            setTimeSlotsButton.setOnAction(event -> {
+                System.out.println("Manage Current Office Hours Clicked");
+                sceneController.switchScene("SetTimeSlots.fxml");
             });
         }
 
