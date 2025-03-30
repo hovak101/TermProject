@@ -76,3 +76,31 @@
     -fx-pref-height: 36;
     -fx-cursor: hand;
 }
+
+/* Custom Alert Dialog Styling */
+.custom-alert {
+    -fx-background-color: white;
+}
+
+.custom-alert > *.header-panel {
+    -fx-background-color: #F5F8FE;
+}
+
+.custom-alert .header-panel .label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.custom-alert > *.content.label {
+    -fx-font-size: 14px;
+    -fx-padding: 20px 10px 20px 10px;
+}
+
+.custom-alert:header *.header-panel {
+    -fx-padding: 20px 10px 20px 10px;
+}
+
+.custom-alert *.button-bar *.container {
+    -fx-padding: 20px;
+}

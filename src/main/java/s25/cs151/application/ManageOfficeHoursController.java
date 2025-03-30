@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -136,12 +137,27 @@ public class ManageOfficeHoursController {
     private void handleDeleteButton() {
         SemesterOfficeHourBean selected = officeHoursTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            // Show confirmation dialog
+            // Format the days string for display
+            String formattedDays = formatDays(selected.getDays());
+            
+            // Create and style the confirmation dialog
             Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
             confirmDialog.setTitle("Confirm Deletion");
             confirmDialog.setHeaderText("Delete Office Hours");
-            confirmDialog.setContentText("Are you sure you want to delete the office hours for " +
-                selected.getSemester() + " " + selected.getYear() + "?");
+            confirmDialog.setContentText("Are you sure you want to delete the following office hours?\n• " +
+                selected.getSemester() + " - " + selected.getYear() + " - " + formattedDays);
+
+            // Style the dialog
+            DialogPane dialogPane = confirmDialog.getDialogPane();
+            dialogPane.getStylesheets().add(getClass().getResource("style/styles.css").toExternalForm());
+            dialogPane.getStyleClass().add("custom-alert");
+            
+            // Style the buttons
+            Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+            okButton.getStyleClass().add("red-button");
+            
+            Button cancelButton = (Button) dialogPane.lookupButton(ButtonType.CANCEL);
+            cancelButton.getStyleClass().add("main-button");
 
             confirmDialog.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
@@ -163,6 +179,16 @@ public class ManageOfficeHoursController {
         alert.setTitle("Information");
         alert.setHeaderText(null);
         alert.setContentText(message);
+
+        // Style the alert
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("style/styles.css").toExternalForm());
+        dialogPane.getStyleClass().add("custom-alert");
+
+        // Style the OK button
+        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        okButton.getStyleClass().add("main-button");
+
         alert.showAndWait();
     }
 
