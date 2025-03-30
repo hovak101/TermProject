@@ -72,7 +72,7 @@ public class ViewCoursesController {
         if (selected != null) {
             showEditDialog(selected);
         } else {
-            showAlert("Please select a course to edit.");
+            showAlert("Action Required", "Please select a course to edit.");
         }
     }
 
@@ -94,6 +94,7 @@ public class ViewCoursesController {
             dialogStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
+            showAlert("Error", "Failed to open edit dialog: " + e.getMessage());
         }
     }
 
@@ -127,18 +128,18 @@ public class ViewCoursesController {
                     // Save changes
                     saveCourses();
                     // Show success message
-                    showAlert("Course deleted successfully.");
+                    showAlert("Success", "Course deleted successfully.");
                 }
             });
         } else {
-            showAlert("Please select a course to delete.");
+            showAlert("Action Required", "Please select a course to delete.");
         }
     }
 
-    private void showAlert(String message) {
+    private void showAlert(String headerText, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
-        alert.setHeaderText(null);
+        alert.setHeaderText(headerText);
         alert.setContentText(message);
 
         // Style the alert
@@ -170,7 +171,7 @@ public class ViewCoursesController {
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert("Error saving courses: " + e.getMessage());
+            showAlert("Error", "Error saving courses: " + e.getMessage());
         }
     }
 } 

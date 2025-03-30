@@ -108,7 +108,7 @@ public class ManageOfficeHoursController {
         if (selected != null) {
             showEditDialog(selected);
         } else {
-            showAlert("Please select an office hours entry to edit.");
+            showAlert("Action Required", "Please select an office hours entry to edit.");
         }
     }
 
@@ -166,18 +166,18 @@ public class ManageOfficeHoursController {
                     // Save changes to file
                     dao.storeSemesterOfficeHours(officeHoursList);
                     // Show success message
-                    showAlert("Office hours deleted successfully.");
+                    showAlert("Success", "Office hours deleted successfully.");
                 }
             });
         } else {
-            showAlert("Please select an office hours entry to delete.");
+            showAlert("Action Required", "Please select an office hours entry to delete.");
         }
     }
 
-    private void showAlert(String message) {
+    private void showAlert(String headerText, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
-        alert.setHeaderText(null);
+        alert.setHeaderText(headerText);
         alert.setContentText(message);
 
         // Style the alert
