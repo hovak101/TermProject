@@ -1,15 +1,7 @@
 package s25.cs151.application;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -45,15 +37,17 @@ public class DefineCoursesController {
 
         if (continueButton != null) {
             continueButton.setOnAction(event -> {
-                System.out.println("Continue button clicked!");
-                String courseCode = courseCodeTextField.getText();
-                String courseName = courseNameTextField.getText();
-                String sectionNumber = sectionNumberTextField.getText();
+                String courseCode = courseCodeTextField.getText().trim();
+                String courseName = courseNameTextField.getText().trim();
+                String sectionNumber = sectionNumberTextField.getText().trim();
+                
                 if (validateFields()) {
                     try {
                         dao.storeCourse(courseCode, courseName, Integer.parseInt(sectionNumber));
+                        // If successful, go back to home page
+                        sceneController.switchScene("Home.fxml");
                     } catch (IllegalArgumentException e) {
-                        errorLabel.setText(e.toString());
+                        errorLabel.setText("Course " + courseCode + " section " + sectionNumber + " already exists.");
                         errorLabel.setVisible(true);
                     }
                 }
@@ -65,25 +59,43 @@ public class DefineCoursesController {
         StringBuilder errorMessage = new StringBuilder();
         boolean hasError = false;
 
-        // Validate year
+        // Validate course code
         String courseCode = courseCodeTextField.getText().trim();
         if (courseCode.isEmpty()) {
-            errorMessage.append("Please enter a year\n");
+            errorMessage.append("Please enter a course code\n");
             hasError = true;
         }
 
-        // Validate year
+        // Validate course name
         String courseName = courseNameTextField.getText().trim();
         if (courseName.isEmpty()) {
-            errorMessage.append("Please enter a year\n");
+            errorMessage.append("Please enter a course name\n");
             hasError = true;
         }
 
-        // Validate year
+        // Validate section number
         String sectionNumber = sectionNumberTextField.getText().trim();
         if (sectionNumber.isEmpty()) {
-            errorMessage.append("Please enter a year\n");
+            errorMessage.append("Please enter a section number\n");
             hasError = true;
+        } else {
+            try {
+                int section = Integer.parseInt(sectionNumber);
+                if (section <= 0) {
+                    errorMessage.append("Section number must be a positive integer\n");
+                    hasError = true;
+                }
+            } catch (NumberFormatException e) {
+                errorMessage.append("Section number must be a valid integer\n");
+                hasError = true;
+            }
+        }
+
+        if (hasError) {
+            errorLabel.setText(errorMessage.toString());
+            errorLabel.setVisible(true);
+        } else {
+            errorLabel.setVisible(false);
         }
 
         return !hasError;
