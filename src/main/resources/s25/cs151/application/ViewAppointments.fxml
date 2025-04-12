@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="s25.cs151.application.ViewAppointmentsController"
+            stylesheets="@style/styles.css"
+            styleClass="root-pane">
+
+  <!-- Sidebar -->
+  <left>
+    <fx:include source="LeftPane.fxml"/>
+  </left>
+
+  <!-- Main -->
+  <center>
+    <VBox spacing="16" styleClass="center-pane">
+      <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+      </padding>
+
+      <Label text="View My Appointments" styleClass="page-title"/>
+      
+      <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button fx:id="refreshButton" text="Refresh" styleClass="action-button"/>
+        <Button fx:id="defineAppointmentButton" text="Define New Appointment" styleClass="action-button"/>
+        <Button fx:id="homeButton" text="Home" styleClass="action-button"/>
+      </HBox>
+      
+      <TableView fx:id="appointmentsTable" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn fx:id="studentNameColumn" text="Student Name" />
+          <TableColumn fx:id="dateColumn" text="Date" />
+          <TableColumn fx:id="timeSlotColumn" text="Time Slot" />
+          <TableColumn fx:id="courseColumn" text="Course" />
+          <TableColumn fx:id="reasonColumn" text="Reason" />
+          <TableColumn fx:id="commentColumn" text="Comment" />
+        </columns>
+      </TableView>
+      
+    </VBox>
+  </center>
+</BorderPane> 

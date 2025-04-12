@@ -12,6 +12,7 @@ public class HomeController {
     @FXML private Button setTimeSlotsButton;
     @FXML private Button viewTimeSlotsButton;
     @FXML private Button viewAppointmentsButton;
+    @FXML private Button defineAppointmentsButton;
     @FXML private Button defineCoursesButton;
     @FXML private Button viewCoursesButton;
 
@@ -52,6 +53,14 @@ public class HomeController {
         if (viewAppointmentsButton != null) {
             viewAppointmentsButton.setOnAction(event -> {
                 System.out.println("View My Appointments Clicked");
+                sceneController.switchScene("ViewAppointments.fxml");
+            });
+        }
+
+        if (defineAppointmentsButton != null) {
+            defineAppointmentsButton.setOnAction(event -> {
+                System.out.println("Define My Appointments Clicked");
+                sceneController.switchScene("DefineAppointments.fxml");
             });
         }
 

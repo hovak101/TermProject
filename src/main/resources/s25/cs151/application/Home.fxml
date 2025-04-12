@@ -23,6 +23,7 @@
       <Button fx:id="setTimeSlotsButton" text="Define Semester's Time Slots" styleClass="main-button"/>
       <Button fx:id="viewTimeSlotsButton" text="View Semester's Time Slots" styleClass="main-button"/>
       <Button fx:id="viewAppointmentsButton" text="View My Appointments" styleClass="main-button"/>
+      <Button fx:id="defineAppointmentsButton" text="Define My Appointments" styleClass="main-button"/>
       <Button fx:id="defineCoursesButton" text="Define Courses" styleClass="main-button"/>
       <Button fx:id="viewCoursesButton" text="View Courses" styleClass="main-button"/>
 
