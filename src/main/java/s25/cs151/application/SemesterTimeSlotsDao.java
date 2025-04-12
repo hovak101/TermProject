@@ -21,7 +21,7 @@ public class SemesterTimeSlotsDao implements SemesterTimeSlotsDaoInt {
             existingSlots.add(slot.getFromHour() + "-" + slot.getToHour());
         }
 
-        try (FileWriter fw = new FileWriter(FILE_NAME);
+        try (FileWriter fw = new FileWriter(FILE_NAME, true);  // true for append mode
              PrintWriter pw = new PrintWriter(fw)) {
 
             for (String slot : timeSlots) {
@@ -42,17 +42,8 @@ public class SemesterTimeSlotsDao implements SemesterTimeSlotsDaoInt {
 
     private List<String> generateTimeSlots(String fromHour, String toHour) {
         List<String> slots = new ArrayList<>();
-
-        LocalTime startTime = LocalTime.parse(fromHour, TIME_FORMATTER);
-        LocalTime endTime = LocalTime.parse(toHour, TIME_FORMATTER);
-
-        while (startTime.isBefore(endTime)) {
-            LocalTime nextSlot = startTime.plusMinutes(15);
-            if (nextSlot.isAfter(endTime)) break;
-            slots.add(startTime.format(TIME_FORMATTER) + "-" + nextSlot.format(TIME_FORMATTER));
-            startTime = nextSlot;
-        }
-
+        // Just add the exact time range selected
+        slots.add(fromHour + "-" + toHour);
         return slots;
     }
 
