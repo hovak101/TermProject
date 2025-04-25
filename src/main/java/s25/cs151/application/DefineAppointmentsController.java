@@ -8,12 +8,17 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Controller for the Define Appointments screen.
+ * Handles the form for faculty to enter office hours schedule/appointments.
+ */
 public class DefineAppointmentsController {
     private SceneController sceneController;
     private AppointmentDaoInt appointmentDao;
     private CourseDao courseDao;
     private SemesterTimeSlotsDao timeSlotDao;
 
+    // FXML injected UI components
     @FXML private TextField studentNameField;
     @FXML private DatePicker datePicker;
     @FXML private ComboBox<String> timeSlotComboBox;
@@ -24,30 +29,37 @@ public class DefineAppointmentsController {
     @FXML private Button cancelButton;
     @FXML private Label errorMessageLabel;
 
+    /**
+     * Initializes the controller.
+     * This method is automatically called after the FXML is loaded.
+     * Sets up the form with time slots and courses, and configures button actions.
+     */
     @FXML
     public void initialize() {
         appointmentDao = new AppointmentDao();
         courseDao = new CourseDao();
         timeSlotDao = new SemesterTimeSlotsDao();
 
-        // Load time slots from DAO
+        // Load time slots from DAO for dropdown
         List<SemesterTimeSlotsBean> timeSlots = timeSlotDao.getTimeSlots();
         List<String> timeSlotStrings = timeSlots.stream()
                 .map(slot -> slot.getFromHour() + " - " + slot.getToHour())
                 .collect(Collectors.toList());
         timeSlotComboBox.setItems(FXCollections.observableArrayList(timeSlotStrings));
         
+        // Set default value for time slot dropdown
         if (!timeSlotStrings.isEmpty()) {
             timeSlotComboBox.setValue(timeSlotStrings.get(0));
         }
 
-        // Load courses from DAO
+        // Load courses from DAO for dropdown
         List<CourseBean> courses = courseDao.getCourses();
         List<String> courseStrings = courses.stream()
                 .map(course -> course.getCourseCode() + "-" + course.getSectionNumber())
                 .collect(Collectors.toList());
         courseComboBox.setItems(FXCollections.observableArrayList(courseStrings));
         
+        // Set default value for course dropdown
         if (!courseStrings.isEmpty()) {
             courseComboBox.setValue(courseStrings.get(0));
         }
@@ -58,7 +70,7 @@ public class DefineAppointmentsController {
         // Setup Save Button
         saveButton.setOnAction(event -> saveAppointment());
 
-        // Setup Cancel Button
+        // Setup Cancel Button to return to Home
         cancelButton.setOnAction(event -> {
             if (sceneController != null) {
                 sceneController.switchScene("Home.fxml");
@@ -69,10 +81,19 @@ public class DefineAppointmentsController {
         errorMessageLabel.setText("");
     }
 
+    /**
+     * Sets the scene controller for navigation between views.
+     * 
+     * @param sceneController The SceneController instance
+     */
     public void setSceneController(SceneController sceneController) {
         this.sceneController = sceneController;
     }
 
+    /**
+     * Handles the save button action.
+     * Validates the form input and stores the appointment.
+     */
     private void saveAppointment() {
         // Reset error message
         errorMessageLabel.setText("");
@@ -117,7 +138,7 @@ public class DefineAppointmentsController {
             alert.setContentText("Appointment successfully saved!");
             alert.showAndWait();
             
-            // Navigate back to Home or ViewAppointments
+            // Navigate to view appointments
             if (sceneController != null) {
                 sceneController.switchScene("ViewAppointments.fxml");
             }

@@ -6,10 +6,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of the AppointmentDaoInt interface that stores and retrieves
+ * appointment data from a CSV file.
+ */
 public class AppointmentDao implements AppointmentDaoInt {
     public static final String FILE_NAME = "Appointments.csv";
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    /**
+     * Retrieves all appointments from the CSV file.
+     * 
+     * @return List of AppointmentBean objects created from CSV data
+     */
     @Override
     public List<AppointmentBean> getAppointments() {
         List<AppointmentBean> appointmentsList = new ArrayList<>();
@@ -37,6 +46,17 @@ public class AppointmentDao implements AppointmentDaoInt {
         return appointmentsList;
     }
 
+    /**
+     * Stores a single appointment in the CSV file.
+     * Appends the new appointment to the existing file.
+     * 
+     * @param studentName The full name of the student
+     * @param date The date of the appointment
+     * @param timeSlot The time slot for the appointment
+     * @param course The course code and section
+     * @param reason The reason for the appointment (optional)
+     * @param comment Additional comments (optional)
+     */
     @Override
     public void storeAppointment(String studentName, LocalDate date, String timeSlot, String course, String reason, String comment) {
         try (FileWriter fw = new FileWriter(FILE_NAME, true);
@@ -55,6 +75,12 @@ public class AppointmentDao implements AppointmentDaoInt {
         }
     }
 
+    /**
+     * Stores multiple appointments in the CSV file.
+     * Overwrites any existing data in the file.
+     * 
+     * @param appointments List of AppointmentBean objects to store
+     */
     @Override
     public void storeAppointments(List<AppointmentBean> appointments) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(FILE_NAME, false))) {

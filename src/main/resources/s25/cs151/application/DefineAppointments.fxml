@@ -3,25 +3,31 @@
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
 <?import java.time.LocalDate?>
+<!-- 
+  View for defining new appointments/office hours.
+  This form allows faculty to enter appointment details with the required and optional fields.
+-->
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="s25.cs151.application.DefineAppointmentsController"
             stylesheets="@style/styles.css"
             styleClass="root-pane">
 
-  <!-- Sidebar -->
+  <!-- Sidebar for navigation -->
   <left>
     <fx:include source="LeftPane.fxml"/>
   </left>
 
-  <!-- Main -->
+  <!-- Main content area with the appointment form -->
   <center>
     <VBox spacing="16" styleClass="center-pane">
       <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
       </padding>
 
+      <!-- Page title -->
       <Label text="Define My Appointments" styleClass="page-title"/>
 
+      <!-- Form grid with labels and input fields -->
       <GridPane hgap="10" vgap="10">
         <columnConstraints>
           <ColumnConstraints minWidth="150" prefWidth="150" />
@@ -33,7 +39,7 @@
         <TextField fx:id="studentNameField" promptText="Enter full student name" 
                   GridPane.rowIndex="0" GridPane.columnIndex="1" />
 
-        <!-- Date (Required) -->
+        <!-- Date (Required) - defaults to current date -->
         <Label text="Schedule Date *" GridPane.rowIndex="1" GridPane.columnIndex="0" />
         <DatePicker fx:id="datePicker" promptText="Select date" GridPane.rowIndex="1" GridPane.columnIndex="1">
           <value>
@@ -41,11 +47,11 @@
           </value>
         </DatePicker>
 
-        <!-- Time Slot (Required) -->
+        <!-- Time Slot (Required) - populated from semester time slots -->
         <Label text="Time Slot *" GridPane.rowIndex="2" GridPane.columnIndex="0" />
         <ComboBox fx:id="timeSlotComboBox" GridPane.rowIndex="2" GridPane.columnIndex="1" />
 
-        <!-- Course (Required) -->
+        <!-- Course (Required) - populated from defined courses -->
         <Label text="Course *" GridPane.rowIndex="3" GridPane.columnIndex="0" />
         <ComboBox fx:id="courseComboBox" GridPane.rowIndex="3" GridPane.columnIndex="1" />
 
@@ -54,17 +60,19 @@
         <TextField fx:id="reasonField" promptText="Optional reason for appointment" 
                   GridPane.rowIndex="4" GridPane.columnIndex="1" />
 
-        <!-- Comment (Optional) -->
+        <!-- Comment (Optional) - multiline text input -->
         <Label text="Comment" GridPane.rowIndex="5" GridPane.columnIndex="0" />
         <TextArea fx:id="commentArea" promptText="Optional comment" 
                  GridPane.rowIndex="5" GridPane.columnIndex="1" />
       </GridPane>
 
+      <!-- Action buttons for form submission -->
       <HBox spacing="10" alignment="CENTER_RIGHT">
         <Button fx:id="saveButton" text="Save Appointment" styleClass="action-button"/>
         <Button fx:id="cancelButton" text="Cancel" styleClass="cancel-button"/>
       </HBox>
 
+      <!-- Error message display area -->
       <Label fx:id="errorMessageLabel" styleClass="error-message" />
 
     </VBox>

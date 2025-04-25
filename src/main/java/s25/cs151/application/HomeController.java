@@ -11,7 +11,19 @@ public class HomeController {
     @FXML private Button manageCurrentHoursButton;
     @FXML private Button setTimeSlotsButton;
     @FXML private Button viewTimeSlotsButton;
+    
+    /**
+     * Button for viewing appointment/office hours schedules.
+     * Navigates to the ViewAppointments view which displays all appointments
+     * in a table sorted by date and time.
+     */
     @FXML private Button viewAppointmentsButton;
+    
+    /**
+     * Button for defining new appointment/office hours schedules.
+     * Navigates to the DefineAppointments view which allows faculty to
+     * enter appointment details including student name, date, time slot, etc.
+     */
     @FXML private Button defineAppointmentsButton;
     @FXML private Button defineCoursesButton;
     @FXML private Button viewCoursesButton;

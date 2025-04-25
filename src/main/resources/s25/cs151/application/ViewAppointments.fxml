@@ -2,39 +2,56 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
+<!-- 
+  View for displaying appointments/office hours in a tabular format.
+  Shows all stored appointments sorted by date and time slot in ascending order.
+-->
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="s25.cs151.application.ViewAppointmentsController"
             stylesheets="@style/styles.css"
             styleClass="root-pane">
 
-  <!-- Sidebar -->
+  <!-- Sidebar for navigation -->
   <left>
     <fx:include source="LeftPane.fxml"/>
   </left>
 
-  <!-- Main -->
+  <!-- Main content area with the appointments table -->
   <center>
     <VBox spacing="16" styleClass="center-pane">
       <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
       </padding>
 
+      <!-- Page title -->
       <Label text="View My Appointments" styleClass="page-title"/>
       
+      <!-- Action buttons toolbar -->
       <HBox spacing="10" alignment="CENTER_LEFT">
         <Button fx:id="refreshButton" text="Refresh" styleClass="action-button"/>
         <Button fx:id="defineAppointmentButton" text="Define New Appointment" styleClass="action-button"/>
         <Button fx:id="homeButton" text="Home" styleClass="action-button"/>
       </HBox>
       
+      <!-- Search functionality -->
+      <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Search by Student Name:" styleClass="search-label"/>
+        <TextField fx:id="searchField" promptText="Enter student name..." styleClass="search-field"/>
+      </HBox>
+      
+      <!-- Table displaying appointment data sorted by date and time slot -->
       <TableView fx:id="appointmentsTable" VBox.vgrow="ALWAYS">
         <columns>
+          <!-- Required fields -->
           <TableColumn fx:id="studentNameColumn" text="Student Name" />
           <TableColumn fx:id="dateColumn" text="Date" />
           <TableColumn fx:id="timeSlotColumn" text="Time Slot" />
           <TableColumn fx:id="courseColumn" text="Course" />
+          
+          <!-- Optional fields -->
           <TableColumn fx:id="reasonColumn" text="Reason" />
           <TableColumn fx:id="commentColumn" text="Comment" />
+          <TableColumn fx:id="deleteColumn" text="Action" />
         </columns>
       </TableView>
       
