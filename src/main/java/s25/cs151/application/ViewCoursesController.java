@@ -63,7 +63,7 @@ public class ViewCoursesController {
 
     @FXML
     private void handleBackButton() {
-        sceneController.switchScene("Home.fxml");
+        sceneController.switchScene("VIEW/Home.fxml");
     }
 
     @FXML
@@ -78,7 +78,7 @@ public class ViewCoursesController {
 
     private void showEditDialog(CourseBean course) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EditCourseDialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("VIEW/EditCourseDialog.fxml"));
             Parent root = loader.load();
             
             EditCourseDialogController dialogController = loader.getController();

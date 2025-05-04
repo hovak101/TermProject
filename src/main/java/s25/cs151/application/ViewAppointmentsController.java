@@ -89,13 +89,13 @@ public class ViewAppointmentsController {
 
         defineAppointmentButton.setOnAction(event -> {
             if (sceneController != null) {
-                sceneController.switchScene("DefineAppointments.fxml");
+                sceneController.switchScene("VIEW/DefineAppointments.fxml");
             }
         });
 
         homeButton.setOnAction(event -> {
             if (sceneController != null) {
-                sceneController.switchScene("Home.fxml");
+                sceneController.switchScene("VIEW/Home.fxml");
             }
         });
     }

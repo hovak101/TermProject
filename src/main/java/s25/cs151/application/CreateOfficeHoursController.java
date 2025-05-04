@@ -37,7 +37,7 @@ public class CreateOfficeHoursController {
         if (cancelButton != null) {
             cancelButton.setOnAction(event -> {
                 System.out.println("cancel clicked");
-                sceneController.switchScene("Home.fxml");
+                sceneController.switchScene("VIEW/Home.fxml");
             });
         }
 
@@ -51,7 +51,7 @@ public class CreateOfficeHoursController {
                                 tuesdayCheckBox.isSelected(), wednesdayCheckBox.isSelected(), thursdayCheckBox.isSelected(),
                                 fridayCheckBox.isSelected());
                         // If successful, go back to home page
-                        sceneController.switchScene("Home.fxml");
+                        sceneController.switchScene("VIEW/Home.fxml");
                     } catch (IllegalArgumentException e) {
                         errorLabel.setText("Office hours for " + semester + " " + year + " already exists.");
                         errorLabel.setVisible(true);

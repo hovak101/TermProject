@@ -73,7 +73,7 @@ public class DefineAppointmentsController {
         // Setup Cancel Button to return to Home
         cancelButton.setOnAction(event -> {
             if (sceneController != null) {
-                sceneController.switchScene("Home.fxml");
+                sceneController.switchScene("VIEW/Home.fxml");
             }
         });
 
@@ -140,7 +140,7 @@ public class DefineAppointmentsController {
             
             // Navigate to view appointments
             if (sceneController != null) {
-                sceneController.switchScene("ViewAppointments.fxml");
+                sceneController.switchScene("VIEW/ViewAppointments.fxml");
             }
         } catch (Exception e) {
             errorMessageLabel.setText("Error: " + e.getMessage());

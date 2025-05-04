@@ -99,7 +99,7 @@ public class ManageOfficeHoursController {
 
     @FXML
     private void handleBackButton() {
-        sceneController.switchScene("Home.fxml");
+        sceneController.switchScene("VIEW/Home.fxml");
     }
 
     @FXML

@@ -31,7 +31,7 @@ public class SetTimeSlotsController {
         if (cancelButton != null) {
             cancelButton.setOnAction(event -> {
                 System.out.println("cancel clicked");
-                sceneController.switchScene("Home.fxml");
+                sceneController.switchScene("VIEW/Home.fxml");
             });
         }
 
@@ -43,7 +43,7 @@ public class SetTimeSlotsController {
                     try {
                         dao.storeTimeSlot(fromHour, toHour);
                         // If successful, go back to home page
-                        sceneController.switchScene("Home.fxml");
+                        sceneController.switchScene("VIEW/Home.fxml");
                     } catch (IllegalArgumentException e) {
                         errorLabel.setText("Unable to save time slots");
                         errorLabel.setVisible(true);

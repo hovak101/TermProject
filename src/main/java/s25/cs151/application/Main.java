@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         SceneController sceneController = new SceneController(primaryStage);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("VIEW/Home.fxml"));
         Parent root = loader.load();
 
         // Inject SceneController into HomeController

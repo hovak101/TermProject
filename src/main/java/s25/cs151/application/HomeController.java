@@ -37,56 +37,56 @@ public class HomeController {
         // Ensure the button is wired properly
         if (createOfficeHoursButton != null) {
             createOfficeHoursButton.setOnAction(event -> {
-                sceneController.switchScene("CreateOfficeHours.fxml");
+                sceneController.switchScene("VIEW/CreateOfficeHours.fxml");
             });
         }
 
         if (manageCurrentHoursButton != null) {
             manageCurrentHoursButton.setOnAction(event -> {
                 System.out.println("Manage Current Office Hours Clicked");
-                sceneController.switchScene("ManageOfficeHours.fxml");
+                sceneController.switchScene("VIEW/ManageOfficeHours.fxml");
             });
         }
 
         if (setTimeSlotsButton != null) {
             setTimeSlotsButton.setOnAction(event -> {
                 System.out.println("Define Semester's Time Slots Clicked");
-                sceneController.switchScene("SetTimeSlots.fxml");
+                sceneController.switchScene("VIEW/SetTimeSlots.fxml");
             });
         }
 
         if (viewTimeSlotsButton != null) {
             viewTimeSlotsButton.setOnAction(event -> {
                 System.out.println("View Semester's Time Slots Clicked");
-                sceneController.switchScene("ViewTimeSlots.fxml");
+                sceneController.switchScene("VIEW/ViewTimeSlots.fxml");
             });
         }
 
         if (viewAppointmentsButton != null) {
             viewAppointmentsButton.setOnAction(event -> {
                 System.out.println("View My Appointments Clicked");
-                sceneController.switchScene("ViewAppointments.fxml");
+                sceneController.switchScene("VIEW/ViewAppointments.fxml");
             });
         }
 
         if (defineAppointmentsButton != null) {
             defineAppointmentsButton.setOnAction(event -> {
                 System.out.println("Define My Appointments Clicked");
-                sceneController.switchScene("DefineAppointments.fxml");
+                sceneController.switchScene("VIEW/DefineAppointments.fxml");
             });
         }
 
         if (defineCoursesButton != null) {
             defineCoursesButton.setOnAction(actionEvent -> {
                 System.out.println("Define Courses Clicked");
-                sceneController.switchScene("DefineCourses.fxml");
+                sceneController.switchScene("VIEW/DefineCourses.fxml");
             });
         }
 
         if (viewCoursesButton != null) {
             viewCoursesButton.setOnAction(event -> {
                 System.out.println("View Courses Clicked");
-                sceneController.switchScene("ViewCourses.fxml");
+                sceneController.switchScene("VIEW/ViewCourses.fxml");
             });
         }
     }

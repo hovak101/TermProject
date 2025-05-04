@@ -31,7 +31,7 @@ public class DefineCoursesController {
         if (cancelButton != null) {
             cancelButton.setOnAction(event -> {
                 System.out.println("cancel clicked");
-                sceneController.switchScene("Home.fxml");
+                sceneController.switchScene("VIEW/Home.fxml");
             });
         }
 
@@ -44,7 +44,7 @@ public class DefineCoursesController {
                     try {
                         dao.storeCourse(courseCode, courseName, sectionNumber);
                         // If successful, go back to home page
-                        sceneController.switchScene("Home.fxml");
+                        sceneController.switchScene("VIEW/Home.fxml");
                     } catch (IllegalArgumentException e) {
                         errorLabel.setText("Course " + courseCode + " section " + sectionNumber + " already exists.");
                         errorLabel.setVisible(true);
