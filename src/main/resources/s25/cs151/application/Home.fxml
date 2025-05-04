@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="s25.cs151.application.HomeController"
-            stylesheets="@../style/styles.css"
+            stylesheets="@style/styles.css"
             styleClass="root-pane">
 
   <!-- Sidebar -->

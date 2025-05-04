@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 
 <VBox fx:id="leftPane" xmlns:fx="http://javafx.com/fxml"
-      stylesheets="@../style/styles.css"
+      stylesheets="@style/styles.css"
       styleClass="left-pane">
 
     <!-- Main heading -->
