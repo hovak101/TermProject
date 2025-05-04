@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="s25.cs151.application.ManageOfficeHoursController"
-      stylesheets="@style/styles.css"
+      fx:controller="s25.cs151.application.ViewCoursesController"
+      stylesheets="@../style/styles.css"
       spacing="20">
+    
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <Label text="Manage Office Hours" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    <Label text="View Courses" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
 
     <VBox spacing="10">
-        <Label text="Current Office Hours:" style="-fx-font-size: 16px;"/>
+        <Label text="Available Courses:" style="-fx-font-size: 16px;"/>
         
-        <TableView fx:id="officeHoursTable" VBox.vgrow="ALWAYS">
+        <TableView fx:id="coursesTable" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="semesterColumn" text="Semester" prefWidth="100"/>
-                <TableColumn fx:id="yearColumn" text="Year" prefWidth="100"/>
-                <TableColumn fx:id="daysColumn" text="Days" prefWidth="300"/>
+                <TableColumn fx:id="courseCodeColumn" text="Course Code" prefWidth="200"/>
+                <TableColumn fx:id="courseNameColumn" text="Course Name" prefWidth="400"/>
+                <TableColumn fx:id="sectionNumberColumn" text="Section" prefWidth="150"/>
             </columns>
         </TableView>
     </VBox>
