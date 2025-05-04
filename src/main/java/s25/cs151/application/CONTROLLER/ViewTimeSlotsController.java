@@ -1,4 +1,4 @@
-package s25.cs151.application;
+package s25.cs151.application.CONTROLLER;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,6 +13,9 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import s25.cs151.application.MODEL.SemesterTimeSlotsBean;
+import s25.cs151.application.MODEL.SemesterTimeSlotsDao;
+import s25.cs151.application.MODEL.SemesterTimeSlotsDaoInt;
 
 public class ViewTimeSlotsController {
     private SceneController sceneController;
@@ -82,7 +85,7 @@ public class ViewTimeSlotsController {
 
             // Style the dialog
             DialogPane dialogPane = confirmDialog.getDialogPane();
-            dialogPane.getStylesheets().add(getClass().getResource("style/styles.css").toExternalForm());
+            dialogPane.getStylesheets().add(getClass().getResource("/s25/cs151/application/style/styles.css").toExternalForm());
             dialogPane.getStyleClass().add("custom-alert");
             
             // Style the buttons
@@ -120,7 +123,7 @@ public class ViewTimeSlotsController {
 
         // Style the alert
         DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("style/styles.css").toExternalForm());
+        dialogPane.getStylesheets().add(getClass().getResource("/s25/cs151/application/style/styles.css").toExternalForm());
         dialogPane.getStyleClass().add("custom-alert");
 
         // Style the OK button

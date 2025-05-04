@@ -7,7 +7,7 @@
   Shows all stored appointments sorted by date and time slot in ascending order.
 -->
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="s25.cs151.application.ViewAppointmentsController"
+            fx:controller="s25.cs151.application.CONTROLLER.ViewAppointmentsController"
             stylesheets="@../style/styles.css"
             styleClass="root-pane">
 

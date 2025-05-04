@@ -8,7 +8,7 @@
   This form allows faculty to enter appointment details with the required and optional fields.
 -->
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="s25.cs151.application.DefineAppointmentsController"
+            fx:controller="s25.cs151.application.CONTROLLER.DefineAppointmentsController"
             stylesheets="@../style/styles.css"
             styleClass="root-pane">
 

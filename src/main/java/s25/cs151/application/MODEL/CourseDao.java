@@ -1,4 +1,4 @@
-package s25.cs151.application;
+package s25.cs151.application.MODEL;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

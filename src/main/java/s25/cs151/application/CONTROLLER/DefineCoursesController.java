@@ -1,9 +1,11 @@
-package s25.cs151.application;
+package s25.cs151.application.CONTROLLER;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import s25.cs151.application.MODEL.CourseDao;
+import s25.cs151.application.MODEL.CourseDaoInt;
 
 public class DefineCoursesController {
     private SceneController sceneController;

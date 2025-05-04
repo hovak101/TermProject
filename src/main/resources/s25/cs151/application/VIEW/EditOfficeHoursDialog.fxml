@@ -7,7 +7,7 @@
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="s25.cs151.application.EditOfficeHoursDialogController"
+      fx:controller="s25.cs151.application.CONTROLLER.EditOfficeHoursDialogController"
       stylesheets="@../style/styles.css"
       spacing="16">
     <padding>

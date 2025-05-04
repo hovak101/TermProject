@@ -1,12 +1,24 @@
-package s25.cs151.application;
-
-import javafx.collections.FXCollections;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
+package s25.cs151.application.CONTROLLER;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import s25.cs151.application.MODEL.AppointmentDao;
+import s25.cs151.application.MODEL.AppointmentDaoInt;
+import s25.cs151.application.MODEL.CourseBean;
+import s25.cs151.application.MODEL.CourseDao;
+import s25.cs151.application.MODEL.SemesterTimeSlotsBean;
+import s25.cs151.application.MODEL.SemesterTimeSlotsDao;
 
 /**
  * Controller for the Define Appointments screen.

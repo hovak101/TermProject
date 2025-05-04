@@ -5,7 +5,7 @@
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="s25.cs151.application.ViewCoursesController"
+      fx:controller="s25.cs151.application.CONTROLLER.ViewCoursesController"
       stylesheets="@../style/styles.css"
       spacing="20">
     

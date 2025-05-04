@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import s25.cs151.application.CONTROLLER.HomeController;
+import s25.cs151.application.CONTROLLER.SceneController;
 
 public class Main extends Application {
     public static final double WINDOW_WIDTH = 800;

@@ -1,9 +1,10 @@
-package s25.cs151.application;
+package s25.cs151.application.CONTROLLER;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import s25.cs151.application.MODEL.SemesterTimeSlotsDao;
 
 public class SetTimeSlotsController {
 

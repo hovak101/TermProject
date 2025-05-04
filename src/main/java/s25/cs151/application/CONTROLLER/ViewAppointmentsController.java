@@ -1,14 +1,4 @@
-package s25.cs151.application;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
-import javafx.geometry.Pos;
+package s25.cs151.application.CONTROLLER;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,6 +6,26 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Comparator;
 import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import s25.cs151.application.MODEL.AppointmentBean;
+import s25.cs151.application.MODEL.AppointmentDao;
+import s25.cs151.application.MODEL.AppointmentDaoInt;
 
 /**
  * Controller for the View Appointments screen.
@@ -142,16 +152,21 @@ public class ViewAppointmentsController {
             " at " + appointment.getTimeSlot() + "?");
 
         // Style the dialog
-        DialogPane dialogPane = confirmDialog.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("style/styles.css").toExternalForm());
-        dialogPane.getStyleClass().add("custom-alert");
-        
-        // Style the buttons
-        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-        okButton.getStyleClass().add("secondary-button");
-        
-        Button cancelButton = (Button) dialogPane.lookupButton(ButtonType.CANCEL);
-        cancelButton.getStyleClass().add("main-button");
+        try {
+            DialogPane dialogPane = confirmDialog.getDialogPane();
+            dialogPane.getStylesheets().add(getClass().getResource("/s25/cs151/application/style/styles.css").toExternalForm());
+            dialogPane.getStyleClass().add("custom-alert");
+            
+            // Style the buttons
+            Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+            okButton.getStyleClass().add("secondary-button");
+            
+            Button cancelButton = (Button) dialogPane.lookupButton(ButtonType.CANCEL);
+            cancelButton.getStyleClass().add("main-button");
+        } catch (Exception e) {
+            // Continue even if styling fails
+            e.printStackTrace();
+        }
 
         confirmDialog.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
@@ -177,13 +192,18 @@ public class ViewAppointmentsController {
         alert.setContentText(message);
 
         // Style the alert
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("style/styles.css").toExternalForm());
-        dialogPane.getStyleClass().add("custom-alert");
+        try {
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(getClass().getResource("/s25/cs151/application/style/styles.css").toExternalForm());
+            dialogPane.getStyleClass().add("custom-alert");
 
-        // Style the OK button
-        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-        okButton.getStyleClass().add("main-button");
+            // Style the OK button
+            Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+            okButton.getStyleClass().add("main-button");
+        } catch (Exception e) {
+            // Continue even if styling fails
+            e.printStackTrace();
+        }
 
         alert.showAndWait();
     }

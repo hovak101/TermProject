@@ -1,4 +1,4 @@
-package s25.cs151.application;
+package s25.cs151.application.CONTROLLER;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +19,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import s25.cs151.application.MODEL.SemesterOfficeHourBean;
+import s25.cs151.application.MODEL.SemesterOfficeHourDao;
+import s25.cs151.application.MODEL.SemesterOfficeHourDaoInt;
 
 public class ManageOfficeHoursController {
     private SceneController sceneController;
@@ -114,7 +117,7 @@ public class ManageOfficeHoursController {
 
     private void showEditDialog(SemesterOfficeHourBean officeHours) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EditOfficeHoursDialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/s25/cs151/application/VIEW/EditOfficeHoursDialog.fxml"));
             Parent root = loader.load();
 
             EditOfficeHoursDialogController dialogController = loader.getController();
@@ -148,16 +151,21 @@ public class ManageOfficeHoursController {
                 selected.getSemester() + " - " + selected.getYear() + " - " + formattedDays);
 
             // Style the dialog
-            DialogPane dialogPane = confirmDialog.getDialogPane();
-            dialogPane.getStylesheets().add(getClass().getResource("style/styles.css").toExternalForm());
-            dialogPane.getStyleClass().add("custom-alert");
-            
-            // Style the buttons
-            Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-            okButton.getStyleClass().add("secondary-button");
-            
-            Button cancelButton = (Button) dialogPane.lookupButton(ButtonType.CANCEL);
-            cancelButton.getStyleClass().add("main-button");
+            try {
+                DialogPane dialogPane = confirmDialog.getDialogPane();
+                dialogPane.getStylesheets().add(getClass().getResource("/s25/cs151/application/style/styles.css").toExternalForm());
+                dialogPane.getStyleClass().add("custom-alert");
+                
+                // Style the buttons
+                Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+                okButton.getStyleClass().add("secondary-button");
+                
+                Button cancelButton = (Button) dialogPane.lookupButton(ButtonType.CANCEL);
+                cancelButton.getStyleClass().add("main-button");
+            } catch (Exception e) {
+                // Continue even if styling fails
+                e.printStackTrace();
+            }
 
             confirmDialog.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
@@ -181,13 +189,18 @@ public class ManageOfficeHoursController {
         alert.setContentText(message);
 
         // Style the alert
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("style/styles.css").toExternalForm());
-        dialogPane.getStyleClass().add("custom-alert");
+        try {
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(getClass().getResource("/s25/cs151/application/style/styles.css").toExternalForm());
+            dialogPane.getStyleClass().add("custom-alert");
 
-        // Style the OK button
-        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-        okButton.getStyleClass().add("main-button");
+            // Style the OK button
+            Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+            okButton.getStyleClass().add("main-button");
+        } catch (Exception e) {
+            // Continue even if styling fails
+            e.printStackTrace();
+        }
 
         alert.showAndWait();
     }

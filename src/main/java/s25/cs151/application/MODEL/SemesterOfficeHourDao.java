@@ -1,10 +1,13 @@
-package s25.cs151.application;
+package s25.cs151.application.MODEL;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.io.FileReader;
 
 public class SemesterOfficeHourDao implements SemesterOfficeHourDaoInt {
     public static final String FILE_NAME = "OfficeHours.csv";
